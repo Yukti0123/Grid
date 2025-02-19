@@ -54,7 +54,7 @@ const Home = () => {
 
   return (
     <div className="p-6 my-40  bg-[#f2e8d5]">
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto text-center ">
         <h1 className="text-4xl lg:text-5xl lg:leading-none font-bold font-sans text-gray-800  text-center">
           More Than The <br></br> Right Equipment
         </h1>
@@ -70,10 +70,7 @@ const Home = () => {
           {...swipeHandlers}
           className="mt-8 w-full flex justify-center items-center lg:hidden"
         >
-          <div className="bg-white p-6 px-0 lg:px-30 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-xs justify-items-center">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
-              {cards[currentCardIndex].title}
-            </h2>
+          <div className="relative bg-white p-6 px-0 lg:px-30 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-xs justify-items-center">
             <div className="mb-4">
               <Image
                 src={cards[currentCardIndex].imageSrc}
@@ -83,15 +80,22 @@ const Home = () => {
                 className="rounded-lg"
               />
             </div>
-            <p className="text-gray-600 mb-4 text-center">
+
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+              {cards[currentCardIndex].title}
+            </h2>
+
+            <p className="text-gray-600 mb-6 text-center">
               {cards[currentCardIndex].description}
             </p>
             {/* Button with full width */}
-            <button
-              className={`w-full px-4 py-2 ${cards[currentCardIndex].buttonColor} text-white hover:bg-opacity-80 transition-colors duration-200`}
-            >
-              {cards[currentCardIndex].buttonText}
-            </button>
+            <div className="absolute bottom-0 w-full mt-4">
+              <button
+                className={`w-full px-4 py-2 ${cards[currentCardIndex].buttonColor} text-white hover:bg-opacity-80 transition-colors duration-200`}
+              >
+                {cards[currentCardIndex].buttonText}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -110,11 +114,11 @@ const Home = () => {
       </div>
 
       {/* Display all cards horizontally on large screens */}
-      <div className="mt-8 lg:px-40 hidden lg:grid grid-cols-3 gap-12 p-6">
+      <div className="mt-8 lg:px-24 hidden lg:grid grid-cols-3 gap-12 p-6">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 justify-items-center"
+            className="bg-white relative p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 justify-items-center"
           >
             <div className="mb-4">
               <Image
@@ -130,11 +134,13 @@ const Home = () => {
             </h2>
             <p className="text-gray-600 text-center mb-6">{card.description}</p>
             {/* Button with full width */}
-            <button
-              className={`w-full font-serif mb-0 px-4 py-2 ${card.buttonColor} text-white hover:bg-opacity-80 transition-colors duration-200`}
-            >
-              {card.buttonText}
-            </button>
+            <div className="absolute w-full bottom-0 left-0">
+              <button
+                className={`w-full font-serif mb-0 px-4 py-2 ${card.buttonColor} text-white hover:bg-opacity-80 transition-colors duration-200 absolute bottom-0`}
+              >
+                {card.buttonText}
+              </button>
+            </div>
           </div>
         ))}
       </div>
